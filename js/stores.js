@@ -1,6 +1,6 @@
-let stores = {artist: "", songs:[], video: ""}
+let stores = []
 //let stores = [{artists: [], songs:[], videos:[]}] 
 
-// function store(){
-//   return stores[stores.length-1]
-// }
+function store(){
+  return stores[stores.length-1]
+}

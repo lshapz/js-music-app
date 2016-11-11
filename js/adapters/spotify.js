@@ -1,6 +1,5 @@
    $(document).ready(function(){
       document.getElementById("submit").addEventListener("click", function(){
-        stores = {artist: "", songs:[], videos:[]}
         event.preventDefault()
         var artist = $('#artist_name').val()
         // const req = new XMLHttpRequest()
@@ -27,7 +26,8 @@
         success: function(data){
             // var songs = data.tracks.slice()
             data.tracks.forEach(song=>{
-                new Song(song.name, song.album.name, song.external_urls.spotify) //
+               
+                new Song(song.name, song.album.name, song.external_urls.spotify, song.preview_url) //
             })
 
         }

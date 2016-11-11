@@ -10,7 +10,8 @@ const Artist = (function createArtist(){
       //this.image_url = image_url
       //et cetera 
       this.id = ++id
-      stores.artist = this
+      debugger
+      stores = [...stores, {artist: this, songs: [], video: ""}]
     }
   }
 }())

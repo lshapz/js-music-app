@@ -4,7 +4,7 @@ const Video = (function createVideo(){
     constructor(youtubeid){
       this.youtubeid = youtubeid
       this.id = ++id
-      stores.video = this
+      store().video = this
     }
   }
 }())
