@@ -1,15 +1,16 @@
 // AIzaSyCVhtKbqqUK6f56QCySSGZ4qvhOf9rWXDM
 
-function ytSearch(input){
+function ytSearch(artist, title){
   $.ajax({
         method: "GET",
-        url: `https://www.googleapis.com/youtube/v3/search?order=viewCount&q=${input}+official+song+music+video&type=video&key=AIzaSyCVhtKbqqUK6f56QCySSGZ4qvhOf9rWXDM&part=snippet`,
+        url: `https://www.googleapis.com/youtube/v3/search?order=relevance&q=${artist}+${title}+official+song+music+video&type=video&key=AIzaSyCVhtKbqqUK6f56QCySSGZ4qvhOf9rWXDM&part=snippet`,
             success: function(data) {
-              data.items.find(function(item){
+              var video = data.items.find(function(item){
                 return item.snippet.title.match(title)
               }) 
-
-              new Video(data.items[0].id.videoId)
+              // debugger 
+              //new Video(data.items[0].id.videoId)
+              new Video(video.id.videoId)
               // debugger
           }
 

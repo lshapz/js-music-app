@@ -4,7 +4,7 @@ function showSongs(){
   $('div#spotify').empty()
   $('div#spotify').append('<ol>')
   stores.songs.forEach(song=>{
-    $('ol').append(`<li>${song.name}</li>`).append(`<a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="#" onclick="ytSearch('${stores.artist.name} ${song.name}')">try to find on youtube</a>`)
+    $('ol').append(`<li>${song.name}</li>`).append(`<a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="#" onclick="ytSearch('${stores.artist.name}', '${song.name}')">try to find on youtube</a>`)
   })
 
 }
