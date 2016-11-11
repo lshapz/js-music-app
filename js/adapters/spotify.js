@@ -1,5 +1,6 @@
    $(document).ready(function(){
       document.getElementById("submit").addEventListener("click", function(){
+        stores = {artist: "", songs:[], videos:[]}
         event.preventDefault()
         var artist = $('#artist_name').val()
         // const req = new XMLHttpRequest()
@@ -8,7 +9,8 @@
             url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
             success: function(data) {
             let artist = data.artists.items[0]
-              new Artist(artist.id, artist.name, artist.images[0].url);
+              new Artist(artist.name, artist.id, artist.images[0].url);
+              displayArtistInfo()
               songSearch(artist.id)
           }
             })
@@ -30,7 +32,7 @@
 
         }
 
-    })
+    }).done(showSongs)
 
 }
    //stealing the base code from the js-ajax 0916 lectures}
