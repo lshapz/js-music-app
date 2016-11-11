@@ -1,4 +1,4 @@
-let stores = {artists: [], songs:[], videos:[]}
+let stores = {artist: "", songs:[], videos:[]}
 //let stores = [{artists: [], songs:[], videos:[]}] 
 
 // function store(){
