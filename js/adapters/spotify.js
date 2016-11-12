@@ -44,13 +44,13 @@ function getArtistAlbums(spot_id){
       success: function(data){
           data.items.forEach(album=>{
             if (uniqAlbums.length === 0){
-              uniqAlbums.push({albumSpotId: album.id, name: album.name, artist: store().artist})
+              uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
             } else if(albumIsUniq(album)){
-              uniqAlbums.push({albumSpotId: album.id, name: album.name, artist: store().artist})
+              uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
             }
           })
           uniqAlbums.forEach(album=>{
-            new Album (album.name, album.artist)
+            new Album (album.spot_id, album.name, album.artist)
           })
       }
 
