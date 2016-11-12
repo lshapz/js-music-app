@@ -1,5 +1,6 @@
    $(document).ready(function(){
       document.getElementById("submit").addEventListener("click", function(){
+        $('div#albums').empty()
         event.preventDefault()
         var artist = $('#artist_name').val()
         // const req = new XMLHttpRequest()
@@ -42,18 +43,18 @@ function getArtistAlbums(spot_id){
       method: "GET",
       url: `https://api.spotify.com/v1/artists/${spot_id}/albums`,
       success: function(data){
-          data.items.forEach(album=>{
-            if (uniqAlbums.length === 0){
-              uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
-            } else if(albumIsUniq(album)){
-              uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
-            }
-          })
-          uniqAlbums.forEach(album=>{
-            new Album (album.spot_id, album.name, album.artist)
-          })
-      }
 
+        data.items.forEach( album =>{
+          if (uniqAlbums.length === 0){
+            uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
+          } else if(albumIsUniq(album)){
+            uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
+          }
+        })
+        uniqAlbums.forEach( album =>{
+          new Album (album.spot_id, album.name, album.artist)
+        })
+      }
   }).done(showAlbums) //albumController
 
   //Helper Function
@@ -65,4 +66,31 @@ function getArtistAlbums(spot_id){
       return false
     }
   }
+}
+
+
+function getAlbum(spot_id){
+  $.ajax({
+    method: "GET",
+    url: `https://api.spotify.com/v1/albums/${spot_id}`,
+    success: data => {
+      debugger
+      // find album in store that matches the album we are searching for
+      var album = albumStore.filter(function(album){
+        return album.name === data.name
+      })
+      album = album[0]
+
+      //Add release year and image to album
+      album.releaseDate = data.release_date
+      album.imageUrl = data.images[1].url
+      //Create a new song for each song on the album and add it to the albums songs array IF it hasn't been clicked
+      if (album.songs.length === 0){
+        data.tracks.items.forEach( song => {
+          var newSong = new Song (song.name, album, song.external_urls.spotify, song.preview_url)
+          album.songs.push(newSong)
+        })
+      }
+    }
+  }).done(showAlbum) //albumController
 }

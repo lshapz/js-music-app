@@ -5,8 +5,4 @@ function store(){
   return stores[stores.length-1]
 }
 
-var albumStore = []
-
-function albumStore(){
-  return albumStore[albumStore.length-1]
-}
+let albumStore = []

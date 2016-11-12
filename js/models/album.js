@@ -5,8 +5,18 @@ const Album = (function (){
       this.spot_id = spot_id
       this.name = name
       this.artist = artist
+      this.songs = []
       this.id = ++id
-      albumStore = [...albumStore, {spot_id: spot_id, name: name, artist: artist}]
+      albumStore = [...albumStore, {spot_id: spot_id, name: name, artist: artist, songs: this.songs, id: this.id}]
     }
   }
 }())
+
+//
+// Things to fix
+//   1. When a song has any special characters in it (?, (), !) it messes up the li#id
+//     - Use regex to only pull in A-Z characters
+  // 2. Artists now have TOPsongs and songs THROUGH albums
+  //3. Append the preview to a singular spot otherwise when one link is clicked on album it will append preview to that link and if it appears in top tracks
+//4. Append 'Top Tracks' above the list of top tracks
+//5. If you search for the same person twice it will still add them to the store
