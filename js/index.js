@@ -2,9 +2,9 @@
 
 function showSongs(){
   $('div#spotify').empty()
-  $('div#spotify').append('<ol>')
+  $('div#spotify').append('<ol id="top-tracks">')
   store().songs.forEach(song=>{
-    $('ol').append(`<li id="${song.name.split(' ').join('')}">${song.name} <a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="#" onclick="ytSearch('${store().artist.name}', '${song.name}')">try to find on youtube</a> <a href="#" onclick="appendPreview('${song.name.split(' ').join('')}','${song.preview_url}')">get preview</a></li>`)
+    $('#top-tracks').append(`<li id="${song.name.split(' ').join('')}">${song.name} <a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="#" onclick="ytSearch('${store().artist.name}', '${song.name}')">try to find on youtube</a> <a href="#" onclick="appendPreview('${song.name.split(' ').join('')}','${song.preview_url}')">get preview</a></li>`)
   })
 
 }
@@ -27,7 +27,7 @@ function appendVideo(){
 }
 
 function appendPreview(song, preview_url){
-  // debugger 
+  // debugger
   if ($(`li#${song} video`).length === 0) {
    $(`li#${song}`).append(`<video controls="" autoplay="" name="media"><source src="${preview_url}" type="audio/mpeg"></video>`)
   }

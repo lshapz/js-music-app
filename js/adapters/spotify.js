@@ -11,9 +11,9 @@
               new Artist(artist.name, artist.id, artist.images[0].url);
               displayArtistInfo()
               songSearch(artist.id)
+              getArtistAlbums(artist.id)
           }
             })
-    
     }) })
 
 
@@ -26,7 +26,6 @@
         success: function(data){
             // var songs = data.tracks.slice()
             data.tracks.forEach(song=>{
-               
                 new Song(song.name, song.album.name, song.external_urls.spotify, song.preview_url) //
             })
 
@@ -36,3 +35,34 @@
 
 }
    //stealing the base code from the js-ajax 0916 lectures}
+
+function getArtistAlbums(spot_id){
+  var uniqAlbums = []
+  $.ajax({
+      method: "GET",
+      url: `https://api.spotify.com/v1/artists/${spot_id}/albums`,
+      success: function(data){
+          data.items.forEach(album=>{
+            if (uniqAlbums.length === 0){
+              uniqAlbums.push({albumSpotId: album.id, name: album.name, artist: store().artist})
+            } else if(albumIsUniq(album)){
+              uniqAlbums.push({albumSpotId: album.id, name: album.name, artist: store().artist})
+            }
+          })
+          uniqAlbums.forEach(album=>{
+            new Album (album.name, album.artist)
+          })
+      }
+
+  }).done(showAlbums) //albumController
+
+  //Helper Function
+  //This makes sure the album is not a compilation album && is not an album that just includes the artist AKA uniqAlbums with Various Artists && prevents duplicates
+  function albumIsUniq(album){
+    if(album.album_type === "album" && album.artists[0].name === store().artist.name && uniqAlbums[uniqAlbums.length - 1].name.toLowerCase() != album.name.toLowerCase()){
+      return true
+    } else {
+      return false
+    }
+  }
+}
