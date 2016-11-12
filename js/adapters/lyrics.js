@@ -1,8 +1,13 @@
-access token
-bM884IfrK7Uh964BBhWeRuu7i3SwT6j1tmckwoXrAej-kSktPfUkMl7xDeZXetJt
+function lyricSearch(artist, title){
+  $.ajax({
+        method: "GET",
+        url: `http://lyrics.wikia.com/api.php?action=lyrics&artist=${artist}&song=${title}&fmt=xml&func=getSong`,
+            success: function(data) {
+                var snippet = data.getElementsByTagName('lyrics')[0].innerHTML
+                var lyric_url = data.getElementsByTagName('url')[0].innerHTML
+                new Lyric(artist, title, snippet, lyric_url)
+              }
+          }).done(showLyrics)
 
-secret
-ou_WFjB7dTVdXioLpGG-dw6W43uyo8L-Wzd-M98rmzDf9iadhBK8V8pI-I5JjZb4w-d8C1z_GZx8gpEXzOm3Lg
+}
 
-id
-2IH5--lfV7w1vClHwTlzImFwnCoqn_isvNnoqYyi0NnkfMHtLJHpNDoB9d8wmVop
