@@ -9,10 +9,10 @@ $(function(){
       url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
       success: function(data) {
         let artist = data.artists.items[0]
-        new Artist(artist.name, artist.id, artist.images[0].url);
+        new Artist(artist.name, artist.id, artist.images[0].url)
         displayArtistInfo()
         songSearch(artist.id)
-        getArtistAlbums(artist.id)
+        getArtistAlbums(artist.id, "first")
       }
     })
   })
@@ -20,30 +20,32 @@ $(function(){
 
 
 function songSearch(spot_id) {
-  //const req = new XMLHttpRequest()
-  // var artist_id = stores.artists.filter(spot_id: spot_id) // pseudocode
   $.ajax({
     method: "GET",
     url: `https://api.spotify.com/v1/artists/${spot_id}/top-tracks/?country=US`,
     success: function(data){
-      // var songs = data.tracks.slice()
       data.tracks.forEach(song=>{
         new Song(song.name, song.album.name, song.external_urls.spotify, song.preview_url) //
       })
-
     }
-
   }).done(showSongs)
-
 }
-//stealing the base code from the js-ajax 0916 lectures}
 
-function getArtistAlbums(spot_id){
+function getArtistAlbums(spot_id, offset){
+
+  if (offset === "first"){
+    offset = 0
+  } else {
+    offset = (parseInt(offset) + 20).toString()
+  }
+
   var uniqAlbums = []
+
   $.ajax({
     method: "GET",
-    url: `https://api.spotify.com/v1/artists/${spot_id}/albums?limit=20&album_type=album`,
+    url: `https://api.spotify.com/v1/artists/${spot_id}/albums?offset=${offset}&limit=20&album_type=album`,
     success: function(data){
+
       data.items.forEach( album =>{
         if (uniqAlbums.length === 0){
           uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
@@ -52,21 +54,33 @@ function getArtistAlbums(spot_id){
         }
       })
 
+      //Checks the current albums are uniqe to all the albums in the current artists albums
       uniqAlbums.forEach(album => {
-        new Album (album.spot_id, album.name, album.artist)
+        if(!exists(store().artist.albums, album)){
+          new Album (album.spot_id, album.name, album.artist)
+        }
+        function exists(arr, album) {
+          return arr.some(function(arrVal) {
+            return album.name === arrVal.name;
+          });
+        }
       })
 
     }
-  }).done(showAlbums) //albumController
+  }).done(showAlbums).then(function(data){
+    if (data.next === null){
+      $('#more').remove()
+    }
+  })
 
   //Helper Function
   //This prevents duplicates
   function albumIsUniq(albumToCheck){
     let result;
-    let albumToCheckRegex = albumToCheck.name.replace(/[()]/g, '')
+    let albumToCheckRegex = albumToCheck.name.replace(/[():]/g, '')
     for (let i = 0; i < uniqAlbums.length; i++){
-      let albumRegex = uniqAlbums[i].name.replace(/[()]/g, '')
-      if (!!albumToCheckRegex.match(`${albumRegex}`)){
+      let albumRegex = uniqAlbums[i].name.replace(/[():]/g, '')
+      if (albumToCheckRegex.toLowerCase() === albumRegex.toLowerCase() || !!albumToCheckRegex.match(`${albumRegex}`) || !!albumRegex.match(`${albumToCheckRegex}`)){
         result = false
         break
       } else {
@@ -75,6 +89,7 @@ function getArtistAlbums(spot_id){
     }
     return result
   }
+
 }
 
 
@@ -83,6 +98,7 @@ function getAlbum(spot_id){
     method: "GET",
     url: `https://api.spotify.com/v1/albums/${spot_id}`,
     success: data => {
+
       // find album in store that matches the album we are searching for
       var album = store().artist.albums.find(function(album){
         return album.name === data.name
@@ -91,6 +107,7 @@ function getAlbum(spot_id){
       //Add release year and image to album
       album.releaseDate = data.release_date
       album.imageUrl = data.images[1].url
+
       //Create a new song for each song on the album and add it to the albums songs array IF it hasn't been clicked
       if (album.songs.length === 0){
         data.tracks.items.forEach( song => {
