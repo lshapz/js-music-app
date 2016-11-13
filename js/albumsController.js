@@ -6,7 +6,7 @@ function showAlbums(){
 
   var artist_spot_id = this.url.split("/")
   artist_spot_id = artist_spot_id[artist_spot_id.length - 2]
-  var artistsAlbums = albumStore.filter(function(album){
+  var artistsAlbums = store().artist.albums.filter(function(album){
     return album.artist.spot_id === artist_spot_id
   })
 
@@ -18,10 +18,9 @@ function showAlbums(){
 function showAlbum(){
 
   var spot_id = this.url.split("/")
-  var album = albumStore.filter(function(album){
+  var album = store().artist.albums.find(function(album){
     return album.spot_id === spot_id[spot_id.length - 1]
   })
-  album = album[0]
 
   $('div#album').remove()
   $('div#albums').append("<div id='album'>")

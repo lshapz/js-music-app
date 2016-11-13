@@ -7,7 +7,7 @@ const Album = (function (){
       this.artist = artist
       this.songs = []
       this.id = ++id
-      albumStore = [...albumStore, {spot_id: spot_id, name: name, artist: artist, songs: this.songs, id: this.id}]
+      this.artist.albums.push(this)
     }
   }
 }())
