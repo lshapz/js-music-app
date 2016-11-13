@@ -39,27 +39,16 @@ function songSearch(spot_id) {
 //stealing the base code from the js-ajax 0916 lectures}
 
 function getArtistAlbums(spot_id){
-  var realAlbums = []
   var uniqAlbums = []
   $.ajax({
     method: "GET",
-    url: `https://api.spotify.com/v1/artists/${spot_id}/albums`,
+    url: `https://api.spotify.com/v1/artists/${spot_id}/albums?limit=20&album_type=album`,
     success: function(data){
-      
       data.items.forEach( album =>{
-        if (realAlbums.length === 0){
-          realAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
-        } else if(albumChecker(album)){
-          realAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
-        }
-      })
-
-      realAlbums.forEach( album =>{
         if (uniqAlbums.length === 0){
-          // new Album (album.spot_id, album.name, album.artist)
-          uniqAlbums.push(album)
-        } else if (albumIsUniq(album)){
-          uniqAlbums.push(album)
+          uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
+        } else if(albumIsUniq(album)){
+          uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
         }
       })
 
@@ -70,15 +59,7 @@ function getArtistAlbums(spot_id){
     }
   }).done(showAlbums) //albumController
 
-  //Helper Functions
-  //This makes sure the album is not a compilation album && is not an album that just includes the artist AKA uniqAlbums with Various Artists
-  function albumChecker(albumToCheck){
-    if(albumToCheck.album_type === "album" && albumToCheck.artists[0].name === store().artist.name){
-      return true
-    } else {
-      return false
-    }
-  }
+  //Helper Function
   //This prevents duplicates
   function albumIsUniq(albumToCheck){
     let result;
