@@ -59,9 +59,9 @@ function getArtistAlbums(spot_id, offset){
         if(!exists(store().artist.albums, album)){
           new Album (album.spot_id, album.name, album.artist)
         }
-        function exists(arr, album) {
-          return arr.some(function(arrVal) {
-            return album.name === arrVal.name;
+        function exists(artistsAlbums, newAlbum) {
+          return artistsAlbums.some(function(artistsAlbum) {
+            return newAlbum.name === artistsAlbum.name;
           });
         }
       })
@@ -77,10 +77,10 @@ function getArtistAlbums(spot_id, offset){
   //This prevents duplicates
   function albumIsUniq(albumToCheck){
     let result;
-    let albumToCheckRegex = albumToCheck.name.replace(/[():]/g, '')
+    let albumToCheckRegex = albumToCheck.name.replace(/[():,.]/g, '')
     for (let i = 0; i < uniqAlbums.length; i++){
-      let albumRegex = uniqAlbums[i].name.replace(/[():]/g, '')
-      if (albumToCheckRegex.toLowerCase() === albumRegex.toLowerCase() || !!albumToCheckRegex.match(`${albumRegex}`) || !!albumRegex.match(`${albumToCheckRegex}`)){
+      let albumRegex = uniqAlbums[i].name.replace(/[():,.]/g, '')
+      if (albumToCheckRegex.toLowerCase().split(" ").join("") === albumRegex.toLowerCase().split(" ").join("") || !!albumToCheckRegex.match(`${albumRegex}`) || !!albumRegex.match(`${albumToCheckRegex}`)){
         result = false
         break
       } else {
