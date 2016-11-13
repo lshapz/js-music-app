@@ -26,8 +26,12 @@ function appendVideo(){
         style="border: solid 4px #37474F"></iframe>`)
 }
 
+function appendRelatedArtist(name){
+  $('div#related-artists').append(`<li><a target="_blank" onclick="searchArtist('${name}')">${name}</a></li>`)
+}
+
 function appendPreview(song, preview_url){
-  // debugger 
+  // debugger
   if ($(`li#${song} video`).length === 0) {
    $(`li#${song}`).append(`<video controls="" autoplay="" name="media"><source src="${preview_url}" type="audio/mpeg"></video>`)
   }
