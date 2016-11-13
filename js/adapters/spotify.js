@@ -1,20 +1,22 @@
 $(document).ready(function(){
-  document.getElementById("submit").addEventListener("click", function(){
-    event.preventDefault()
-    var artist = $('#artist_name').val()
-    // const req = new XMLHttpRequest()
-    $.ajax({
-        method: "GET",
-        url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
-        success: function(data) {
-        let artist = data.artists.items[0]
-          new Artist(artist.name, artist.id, artist.images[0].url);
-          displayArtistInfo()
-          songSearch(artist.id)
-        }
-    })
-}) })
+  document.getElementById("submit").addEventListener("click", searchArtist)
+})
 
+function searchArtist(){
+  event.preventDefault()
+  var artist = $('#artist_name').val()
+  // const req = new XMLHttpRequest()
+  $.ajax({
+      method: "GET",
+      url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
+      success: function(data) {
+      let artist = data.artists.items[0]
+        new Artist(artist.name, artist.id, artist.images[0].url);
+        displayArtistInfo()
+        songSearch(artist.id)
+      }
+  })
+}
 
 function songSearch(spot_id) {
     //const req = new XMLHttpRequest()
@@ -31,13 +33,19 @@ function songSearch(spot_id) {
     }).done(showSongs)
 }
 
+function searchRelatedArtist(artist_name) {
+  $('#artist_name').val(artist_name)
+  searchArtist()
+}
+
 function getRelatedArtists(spot_id) {
   $('div#related-artists').empty()
+  $('div#related-artists').append('<h4>Related Artists:</h4>')
   $.ajax({
     method: "GET",
     url: `https://api.spotify.com/v1/artists/${spot_id}/related-artists`,
     success: function(data){
-      data.artists.forEach((artist)=>{
+      data.artists.slice(0,5).forEach((artist)=>{
         appendRelatedArtist(artist.name)
       })
     }

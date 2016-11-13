@@ -1,5 +1,3 @@
-
-
 function showSongs(){
   $('div#spotify').empty()
   $('div#spotify').append('<ol>')
@@ -14,7 +12,7 @@ function displayArtistInfo() {
   $('div#artist').empty()
   $('div#artist').append(`<h1>${artist.name}</h1>`)
   $('div#artist').append(`<img src="${artist.image_url}" style="height:20%;width:20%">`)
-
+  getRelatedArtists(artist.spot_id)
 }
 
 function appendVideo(){
@@ -27,11 +25,10 @@ function appendVideo(){
 }
 
 function appendRelatedArtist(name){
-  $('div#related-artists').append(`<li><a target="_blank" onclick="searchArtist('${name}')">${name}</a></li>`)
+  $('div#related-artists').append(`<li><a href="#" onclick="searchRelatedArtist('${name}')">${name}</a></li>`)
 }
 
 function appendPreview(song, preview_url){
-  // debugger
   if ($(`li#${song} video`).length === 0) {
    $(`li#${song}`).append(`<video controls="" autoplay="" name="media"><source src="${preview_url}" type="audio/mpeg"></video>`)
   }
