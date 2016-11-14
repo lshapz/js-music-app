@@ -8,10 +8,10 @@ const Artist = (function createArtist(){
       this.albums = []
       // this.popularity = popularity
       //this.image_url = image_url
-      //et cetera 
+      //et cetera
       this.id = ++id
       // debugger
-      stores = [...stores, {artist: this, songs: [], video: "", lyrics: []}]
+      stores = [...stores, {artist: this, songs: [], video: "", lyrics: ""}]
     }
   }
 }())
