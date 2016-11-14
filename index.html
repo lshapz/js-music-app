@@ -8,28 +8,27 @@
 </head>
 <body>
 
-<div class="container" id="searchbar">
+<div class="row">
+  <div class="container" class="span4 offset4" id="searchbar">
+    <form>
+      <input type="text" id="artist_name">
+      <input type="submit" id="submit">
+    </form>
 
-  <form>
-    <input type="text" id="artist_name">
-    <input type="submit" id="submit">
-  </form>
-
-  <div id="youtube"></div>
-
+    <div id="youtube"></div>
+  </div>
 </div>
 
 <div class="container">
-
   <div class="row-fluid">
 
     <div id="left" class="span4">
       <div id="spotify"></div>
-      <div id="related-artists"></div>
     </div>
 
     <div id="center" class="span4">
       <div id="artist"></div>
+      <div id="related-artists"></div>
       <div id="preview"></div>
       <div id="lyrics"></div>
     </div>
@@ -39,7 +38,6 @@
     </div>
 
   </div>
-
 </div>
 
 <script src="js/jquery-3.1.1.min.js"></script>
