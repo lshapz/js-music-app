@@ -15,6 +15,7 @@ function displayArtistInfo() {
   $('div#artist').empty()
   $('div#artist').append(`<h1>${artist.name}</h1>`)
   $('div#artist').append(`<img src="${artist.image_url}" style="height:20%;width:20%">`)
+  $('.test').css('background', `url(${artist.image_url}`)
   getRelatedArtists(artist.spot_id)
 }
 

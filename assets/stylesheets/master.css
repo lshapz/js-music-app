@@ -23,3 +23,15 @@ video {
 #related-artists, #albums {
   list-style-type: none;
 }
+
+.test {
+  display: block;
+  content: "";
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: -1;
+}
