@@ -37,6 +37,7 @@ function appendPreview(song, preview_url){
   }
 
 }
+<<<<<<< HEAD
 
 function showLyrics(){
   
@@ -51,3 +52,5 @@ function showLyrics(){
   }
 
 }
+=======
+>>>>>>> ae85b9a3d1587dc582071b113f3b6252d5e20a44

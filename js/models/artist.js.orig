@@ -1,0 +1,21 @@
+const Artist = (function createArtist(){
+  var id = 0;
+  return class {
+    constructor(name, spot_id, image_url){
+      this.spot_id = spot_id
+      this.name = name
+      this.image_url = image_url
+
+      // this.popularity = popularity
+      //this.image_url = image_url
+      //et cetera
+      this.id = ++id
+<<<<<<< HEAD
+      // debugger
+      stores = [...stores, {artist: this, songs: [], video: "", lyrics: []}]
+=======
+      stores = [...stores, {artist: this, songs: [], video: ""}]
+>>>>>>> ae85b9a3d1587dc582071b113f3b6252d5e20a44
+    }
+  }
+}())
