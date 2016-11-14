@@ -6,7 +6,7 @@ const Song = (function createSong(){
       this.album = album
       this.spotify_url = spotify_url
       this.preview_url = preview_url
-      //et cetera 
+      //et cetera
       this.id = ++id
       store().songs.push(this)
     }

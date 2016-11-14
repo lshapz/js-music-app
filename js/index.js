@@ -1,8 +1,8 @@
 function showSongs(){
   $('div#spotify').empty()
-  $('div#spotify').append('<ol>')
+  $('div#spotify').append('<ol id="top-tracks">')
   store().songs.forEach(song=>{
-    $('ol').append(`<li id="${song.name.split(' ').join('')}">${song.name} <a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="#" onclick="ytSearch('${store().artist.name}', '${song.name}')">try to find on youtube</a> <a href="#" onclick="appendPreview('${song.name.split(' ').join('')}','${song.preview_url}')">get preview</a></li>`)
+    $('#top-tracks').append(`<li id="${song.name.replace(/[^a-zA-Z\d:]/g, '')}">${song.name} <a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="javascript:" onclick="ytSearch('${store().artist.name}', '${song.name}')">try to find on youtube</a> <a href="javascript:" onclick="appendPreview('${song.name.replace(/[^a-zA-Z\d:]/g, '')}','${song.preview_url}')">get preview</a></li>`)
   })
 
 }
@@ -25,7 +25,7 @@ function appendVideo(){
 }
 
 function appendRelatedArtist(name){
-  $('div#related-artists').append(`<li><a href="#" onclick="searchRelatedArtist('${name}')">${name}</a></li>`)
+  $('div#related-artists').append(`<li><a href="javascript:" onclick="searchRelatedArtist('${name}')">${name}</a></li>`)
 }
 
 function appendPreview(song, preview_url){
