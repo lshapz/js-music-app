@@ -13,7 +13,8 @@ function searchArtist(){
     url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
     success: function(data) {
       let artist = data.artists.items[0]
-      new Artist(artist.name, artist.id, artist.images[0].url);
+      debugger
+      new Artist(artist.name, artist.id, artist.images[0].url, artist.images[1].url);
       displayArtistInfo()
       songSearch(artist.id)
       getArtistAlbums(artist.id, "first")

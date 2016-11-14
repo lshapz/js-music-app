@@ -40,12 +40,15 @@ function displayArtistInfo() {
 }
 
 function appendVideo(){
-    $('div#youtube').empty()
-    $('div#youtube').append(`<iframe id="existing-iframe-example"
+    if (!$('div#youtube').html().includes(store().video.youtubeid)) 
+      {   $('div#youtube').html(`<iframe id="existing-iframe-example"
         width="640" height="360"
         src='https://www.youtube.com/embed/${store().video.youtubeid}'
         frameborder="0"
-        style="border: solid 4px #37474F"></iframe>`)
+        style="border: solid 4px #37474F"></iframe>`) }
+    else {
+      $('div#youtube').html('<img src="assets/logo.png" style="width: 640px; height: 360px;">')
+    }
 }
 
 function appendRelatedArtist(name){
@@ -53,7 +56,12 @@ function appendRelatedArtist(name){
 }
 
 function appendPreview(song_name, preview_url){
-   $(`#preview`).html(`<br><p>${song_name}</p><video controls="" name="media"><source src="${preview_url}" type="audio/mpeg"></video>`)
+  if (!$(`#preview`).html().includes(song_name) ){ 
+     $(`#preview`).html(`<br><p>${song_name}</p><video controls="" name="media"><source src="${preview_url}" type="audio/mpeg"></video>`)
+  }
+  else {  
+    $(`#preview`).empty()
+  }
 }
 
 function showLyrics(){
@@ -63,7 +71,14 @@ function showLyrics(){
   var title = store().lyrics.title.split(' ').join('')
   // debugger
   // if ($(`div#lyrics`).length === 0) {
-  $(`div#lyrics`).html(`<p><a target="_blank" href="${url}">${snippet}</a></p>`)
+     
+  if (!$(`div#lyrics`).html().includes(url)) {
+    $(`div#lyrics`).html(`<br><p><a target="_blank" href="${url}">${snippet}</a></p>`)
+  }
+  else {
+    $('div#lyrics').empty()
+  }
+
   // }
   // else {
   //   // $(`p#{title}`).remove()
