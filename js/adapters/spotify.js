@@ -1,5 +1,6 @@
 $(document).ready(function(){
   $("#submit").click(searchArtist)
+    
 })
 
 function searchArtist(){
@@ -7,6 +8,7 @@ function searchArtist(){
   $('div#youtube').html("<img src='assets/lyrics_icon.png' style='width: 640px; height: 360px;'>")
   $('div#albums').empty()
   $('div#preview').empty()
+  $('div#lyrics').empty()
   var artist = $('#artist_name').val().replace(/[^a-zA-Z\d\s:]/g, '')
   $.ajax({
     method: "GET",

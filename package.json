@@ -1,0 +1,23 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Apis Youtube & Spotify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmarren2090/js-music-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmarren2090/js-music-app/issues"
+  },
+  "homepage": "https://github.com/tmarren2090/js-music-app#readme",
+  "dependencies": {
+    "gimme-lyrics": "^0.3.1",
+    "lyricist": "^0.1.1"
+  }
+}

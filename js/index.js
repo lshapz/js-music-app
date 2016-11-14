@@ -1,3 +1,6 @@
+  var lyricist = require('lyricist')('ou_WFjB7dTVdXioLpGG-dw6W43uyo8L-Wzd-M98rmzDf9iadhBK8V8pI-I5JjZb4w-d8C1z_GZx8gpEXzOm3Lg')
+
+
 function showSongs(){
   $('div#spotify').empty()
   $('div#spotify').append('<h2>Top Tracks</h2>')
