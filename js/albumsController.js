@@ -44,6 +44,6 @@ function showAlbum(){
   album.songs.forEach( song =>{
     let artist_name_regex = store().artist.name.replace(/[^a-zA-Z\d:]/g, '')
     let song_name_regex = song.name.replace(/[^a-zA-Z\d\s:]/g, '')
-    $('#album-list').append(`<li id="${song_name_regex}">${song.name} <a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="javascript:" onclick="ytSearch('${artist_name_regex}', '${song_name_regex}')">Sing Karaoke</a> <a href="javascript:" onclick="appendPreview('${song_name_regex}','${song.preview_url}')">get preview</a> <a href="#" onclick="lyricSearch('${artist_name_regex}', '${song_name_regex}')">get lyrics link/snippet</a></li>`)
+    $('#album-list').append(`<li id="${song_name_regex}"><h6>${song.name}</h6> <a target="_blank" href="${song.spotify_url}"><img class="icon" style="width: 5%;" src="assets/spotify_icon.png" title="Listen on Spotify"></a> <a href="javascript:" onclick="ytSearch('${artist_name_regex}', '${song_name_regex}')"><img class="icon" style="width: 5%;" src="assets/youtube_icon.png" title="See a youtube karaoke(?) video"></a> <a href="javascript:" onclick="appendPreview('${song.name.replace(/['"]/g, "")}','${song.preview_url}')"><img class="icon" style="width: 5%;" src="assets/preview_icon.png" title="Get a 30 second preview"></a> <a href="javascript:" onclick="lyricSearch('${store().artist.name}', '${song.name.replace(/[^a-zA-Z\d\s:]/g, '')}')"><img class="icon" style="width: 5%;" src="assets/lyrics_icon.png" title="Get Lyrics"></a></li>`)
   })
 }

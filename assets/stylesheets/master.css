@@ -8,10 +8,18 @@
 
 .container {
   width: 100%;
-  padding: 10px;
+  padding: 20px;
 }
 
 video {
   height: 40px;
   width: 250px;
+}
+/*
+.row-fluid {
+  padding: 20px;
+}*/
+
+#related-artists, #albums {
+  list-style-type: none;
 }

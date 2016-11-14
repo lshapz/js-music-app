@@ -1,3 +1,7 @@
+* {
+  background-color: pink;
+}
+
 #center {
   text-align: center;
 }
@@ -15,7 +19,7 @@ video {
   height: 40px;
   width: 250px;
 }
-/*
-.icon {
-  width: 5%;
-}*/
+
+.row-fluid {
+  padding-left: 200px;
+}
