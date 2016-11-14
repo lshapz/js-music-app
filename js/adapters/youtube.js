@@ -7,8 +7,8 @@ function ytSearch(artist, title){
             success: function(data) {
               var video = data.items.find(function(item){
                 return item.snippet.title.match(title)
-              }) 
-              // debugger 
+              })
+              //debugger 
               //new Video(data.items[0].id.videoId)
               new Video(video.id.videoId)
               // debugger
@@ -17,4 +17,3 @@ function ytSearch(artist, title){
   }).done(appendVideo)
 
 }
-

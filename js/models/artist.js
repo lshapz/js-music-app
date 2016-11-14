@@ -5,7 +5,7 @@ const Artist = (function createArtist(){
       this.spot_id = spot_id
       this.name = name
       this.image_url = image_url
-
+      this.albums = []
       // this.popularity = popularity
       //this.image_url = image_url
       //et cetera 

@@ -22,9 +22,13 @@
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/adapters/spotify.js"></script>
 <script src="js/adapters/youtube.js"></script>
+<<<<<<< HEAD
 <script src="js/adapters/lyrics.js"></script>
 <script src="js/index.js"></script>
+=======
+>>>>>>> 2bdf60f5dabf5c6af84214edadc8a918885e4196
 <script src="js/stores.js"></script>
+<script src="js/index.js"></script>
 <script src="js/models/artist.js"></script>
 <script src="js/models/lyric.js"></script>
 <script src="js/models/video.js"></script>
