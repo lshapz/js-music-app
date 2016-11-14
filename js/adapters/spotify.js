@@ -1,5 +1,6 @@
 $(document).ready(function(){
-  $("#submit").click(searchArtist)
+  $("#artist_search").click(searchArtist)
+  $("#song_search").click(searchSong)
 })
 
 function searchArtist(){
@@ -8,7 +9,6 @@ function searchArtist(){
   $('div#albums').empty()
   $('div#preview').empty()
   var artist = $('#artist_name').val().replace(/[-]/g, " ").replace(/[^a-zA-Z\d\s:]/g, '')
-  debugger
   $.ajax({
     method: "GET",
     url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
@@ -16,13 +16,34 @@ function searchArtist(){
       let artist = data.artists.items[0]
       new Artist(artist.name, artist.id, artist.images[0].url);
       displayArtistInfo()
-      songSearch(artist.id)
+      topTracksSearch(artist.id)
       getArtistAlbums(artist.id, "first")
     }
   })
 }
 
-function songSearch(spot_id) {
+function searchSong(){
+  event.preventDefault()
+  $('div#youtube').html("<img src='assets/logo.png' style='width: 640px; height: 360px;'>")
+  $('div#albums').empty()
+  $('div#preview').empty()
+  var song = $('#song_name').val().replace(/[-]/g, " ").replace(/[^a-zA-Z\d\s:]/g, '')
+  $.ajax({
+    method: "GET",
+    url: `https://api.spotify.com/v1/search?q=${song}&type=track`,
+    success: function(data) {
+      new Artist("Dummy")
+      data.tracks.items.slice(0,5).forEach(function(track){
+        new Song(track.name, track.album.name, track.external_urls.spotify, track.preview_url, track.artists[0].name)
+      })
+
+      showSearchTracks()
+
+    }
+  })
+}
+
+function topTracksSearch(spot_id) {
   $.ajax({
     method: "GET",
     url: `https://api.spotify.com/v1/artists/${spot_id}/top-tracks/?country=US`,
