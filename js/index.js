@@ -8,7 +8,7 @@ function showSongs(){
     $('#top-tracks').append(`
       <li id="${song_name_regex}">
         <h6>${song.name}</h6>
-          
+
         <a target="_blank" href="${song.spotify_url}">
           <img class="icon" style="width: 5%;" src="assets/spotify_icon.png" title="Listen on Spotify">
         </a>
@@ -34,7 +34,7 @@ function displayArtistInfo() {
   var artist = store().artist
   $('div#artist').empty()
   $('div#artist').append(`<h1>${artist.name}</h1>`)
-  $('div#artist').append(`<img src="${artist.image_url}" style="height:20%;width:20%">`)
+  $('div#artist').append(`<img src="${artist.image_url}" style="width:70%">`)
   $('.test').css('background', `url(${artist.image_url}`)
   getRelatedArtists(artist.spot_id)
 }
