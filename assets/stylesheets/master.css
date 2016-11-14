@@ -35,3 +35,7 @@ video {
   position: fixed;
   z-index: -1;
 }
+
+#albumsList li:hover {
+  
+}

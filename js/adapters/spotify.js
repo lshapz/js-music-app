@@ -69,16 +69,16 @@ function getArtistAlbums(spot_id, offset){
 
       data.items.forEach( album =>{
         if (uniqAlbums.length === 0){
-          uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
+          uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist, imageUrl: album.images[0].url})
         } else if(albumIsUniq(album)){
-          uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist})
+          uniqAlbums.push({spot_id: album.id, name: album.name, artist: store().artist, imageUrl: album.images[0].url})
         }
       })
 
       //Checks the current albums are uniqe to all the albums in the current artists albums
       uniqAlbums.forEach(album => {
         if(!exists(store().artist.albums, album)){
-          new Album (album.spot_id, album.name, album.artist)
+          new Album (album.spot_id, album.name, album.artist, album.imageUrl)
         }
         function exists(artistsAlbums, newAlbum) {
           return artistsAlbums.some(function(artistsAlbum) {

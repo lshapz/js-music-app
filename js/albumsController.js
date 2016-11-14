@@ -17,7 +17,17 @@ function showAlbums(){
 
   //Create list items for each album
   artistsAlbums.forEach(album=>{
-    $('#albumsList').append(`<li id="${album.name.split(' ').join('')}"><a href="javascript:" onclick="getAlbum('${album.spot_id}')">${album.name}</a></li>`)
+    album_name_regex = album.name.replace(/[^a-zA-Z\d:]/g, '')
+    $('#albumsList').append(`<li id="${album_name_regex}"><a href="javascript:" onclick="getAlbum('${album.spot_id}')">${album.name}</a></li>`)
+
+    $(`#${album_name_regex}`).hover(
+      function(){
+        $('#artist img').attr('src', `${album.imageUrl}`)
+      },
+      function(){
+        $('#artist img').attr('src', `${store().artist.image_url}`)
+      }
+    )
   })
 
   //Add a link to display more albums

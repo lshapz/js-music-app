@@ -1,10 +1,11 @@
 const Album = (function (){
   var id = 0;
   return class Album {
-    constructor(spot_id, name, artist){
+    constructor(spot_id, name, artist, imageUrl){
       this.spot_id = spot_id
       this.name = name
       this.artist = artist
+      this.imageUrl = imageUrl
       this.songs = []
       this.id = ++id
       this.artist.albums.push(this)
