@@ -10,4 +10,3 @@ function lyricSearch(artist, title){
           }).done(showLyrics)
 
 }
-

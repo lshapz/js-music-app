@@ -2,7 +2,9 @@ function showSongs(){
   $('div#spotify').empty()
   $('div#spotify').append('<ol id="top-tracks">')
   store().songs.forEach(song=>{
-    $('#top-tracks').append(`<li id="${song.name.replace(/[^a-zA-Z\d:]/g, '')}">${song.name} <a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="javascript:" onclick="ytSearch('${store().artist.name}', '${song.name}')">try to find on youtube</a> <a href="javascript:" onclick="appendPreview('${song.name.replace(/[^a-zA-Z\d:]/g, '')}','${song.preview_url}')">get preview</a></li>`)
+    let artist_name_regex = store().artist.name.replace(/[^a-zA-Z\d:]/g, '')
+    let song_name_regex = song.name.replace(/[^a-zA-Z\d\s:]/g, '')
+    $('#top-tracks').append(`<li id="${song_name_regex}">${song.name} <a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="javascript:" onclick="ytSearch('${artist_name_regex}', '${song_name_regex}')">Sing Karaoke</a> <a href="javascript:" onclick="appendPreview('${song_name_regex}','${song.preview_url}')">get preview</a> <a href="#" onclick="lyricSearch('${artist_name_regex}', '${song_name_regex}')">get lyrics link/snippet</a></li>`)
   })
 
 }
@@ -25,23 +27,17 @@ function appendVideo(){
 }
 
 function appendRelatedArtist(name){
-  $('div#related-artists').append(`<li><a href="javascript:" onclick="searchRelatedArtist('${name}')">${name}</a></li>`)
+  $('div#related-artists').append(`<li><a href="javascript:" onclick="searchRelatedArtist('${name.replace(/[^a-zA-Z\d\s:]/g, '')}')">${name}</a></li>`)
 }
 
 function appendPreview(song, preview_url){
-  if ($(`li#${song} video`).length === 0) {
-   $(`li#${song}`).append(`<video controls="" name="media"><source src="${preview_url}" type="audio/mpeg"></video>`)
-  }
-  else {
-    $('video').remove()
-  }
-
+   $(`#preview`).html(`<video controls="" name="media"><source src="${preview_url}" type="audio/mpeg"></video>`)
 }
 
 function showLyrics(){
-  
+
   var snippet = store().lyrics[store().lyrics.length-1].snippet
-  var url = store().lyrics[store().lyrics.length-1].lyrics_url  
+  var url = store().lyrics[store().lyrics.length-1].lyrics_url
   var title = store().lyrics[store().lyrics.length-1].title.split(' ').join('')
   // debugger
   if ($(`p#lyrics${title}`).length === 0) {

@@ -42,6 +42,8 @@ function showAlbum(){
   $('div#album').append(`<h3>Released: ${album.releaseDate}</h3>`)
   $('div#album').append('<ol id="album-list">')
   album.songs.forEach( song =>{
-    $('#album-list').append(`<li id="${song.name.split(' ').join('')}">${song.name} <a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="javascript:" onclick="ytSearch('${store().artist.name}', '${song.name}')">try to find on youtube</a> <a href="javascript:" onclick="appendPreview('${song.name.split(' ').join('')}','${song.preview_url}')">get preview</a></li>`)
+    let artist_name_regex = store().artist.name.replace(/[^a-zA-Z\d:]/g, '')
+    let song_name_regex = song.name.replace(/[^a-zA-Z\d\s:]/g, '')
+    $('#album-list').append(`<li id="${song_name_regex}">${song.name} <a target="_blank" href="${song.spotify_url}">listen on spotify</a> <a href="javascript:" onclick="ytSearch('${artist_name_regex}', '${song_name_regex}')">Sing Karaoke</a> <a href="javascript:" onclick="appendPreview('${song_name_regex}','${song.preview_url}')">get preview</a> <a href="#" onclick="lyricSearch('${artist_name_regex}', '${song_name_regex}')">get lyrics link/snippet</a></li>`)
   })
 }

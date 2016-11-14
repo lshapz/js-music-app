@@ -6,7 +6,7 @@ function searchArtist(){
   event.preventDefault()
   $('div#youtube').empty()
   $('div#albums').empty()
-  var artist = $('#artist_name').val()
+  var artist = $('#artist_name').val().replace(/[^a-zA-Z\d\s:]/g, '')
   $.ajax({
     method: "GET",
     url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
