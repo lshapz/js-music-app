@@ -1,5 +1,6 @@
 function showSongs(){
   $('div#spotify').empty()
+  $('div#spotify').append('<h2>Top Tracks</h2>')
   $('div#spotify').append('<ol id="top-tracks">')
   store().songs.forEach(song=>{
     let artist_name_regex = store().artist.name.replace(/[^a-zA-Z\d:]/g, '')

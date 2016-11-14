@@ -6,6 +6,7 @@ function searchArtist(){
   event.preventDefault()
   $('div#youtube').empty()
   $('div#albums').empty()
+  $('div#preview').empty()
   var artist = $('#artist_name').val().replace(/[^a-zA-Z\d\s:]/g, '')
   $.ajax({
     method: "GET",
