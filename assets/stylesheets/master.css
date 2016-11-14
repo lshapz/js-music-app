@@ -20,10 +20,11 @@ h1, h3 {
   font-family: 'Cabin', sans-serif;
 
 }
-#submit {
-  margin-bottom: 10px;
-
+#artist_search, #song_search {
+  margin-bottom: 11px;
 }
+
+
 #albumsList li {
   padding: 7px 0;
 }
