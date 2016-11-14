@@ -6,9 +6,9 @@ const Lyric = (function createLyric(){
       this.artist = artist
       this.snippet = snippet
       this.lyrics_url = lyrics_url
-      //et cetera 
+      //et cetera
       this.id = ++id
-      store().lyrics.push(this)
+      store().lyrics = this
     }
   }
 }())
