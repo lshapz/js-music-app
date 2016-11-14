@@ -1,6 +1,6 @@
 function showSongs(){
   $('div#spotify').empty()
-  $('div#spotify').append('<h2>Top Tracks</h2>')
+  $('div#spotify').append('<h3>Top Tracks</h3>')
   $('div#spotify').append('<ol id="top-tracks">')
   store().songs.forEach(song=>{
     let artist_name_regex = store().artist.name.replace(/[^a-zA-Z\d:]/g, '')
@@ -13,15 +13,15 @@ function showSongs(){
           <img class="icon" style="width: 5%;" src="assets/spotify_icon.png" title="Listen on Spotify">
         </a>
 
-        <a href="javascript:" onclick="ytSearch('${artist_name_regex}', '${song_name_regex}')">
+        <a href="#" onclick="ytSearch('${artist_name_regex}', '${song_name_regex}')">
           <img class="icon" style="width: 5%;" src="assets/youtube_icon.png" title="See a youtube karaoke(?) video">
         </a>
 
-        <a href="javascript:" onclick="appendPreview('${song.name.replace(/['"]/g, "")}','${song.preview_url}')">
+        <a href="#preview" onclick="appendPreview('${song.name.replace(/['"]/g, "")}','${song.preview_url}')">
           <img class="icon" style="width: 5%;" src="assets/preview_icon.png" title="Get a 30 second preview">
         </a>
 
-        <a href="javascript:" onclick="lyricSearch('${store().artist.name}', '${song.name.replace(/[^a-zA-Z\d\s:]/g, '')}')">
+        <a href="#lyrics" onclick="lyricSearch('${store().artist.name}', '${song.name.replace(/[^a-zA-Z\d\s:]/g, '')}')">
           <img class="icon" style="width: 5%;" src="assets/lyrics_icon.png" title="Get Lyrics">
         </a>
       </li>

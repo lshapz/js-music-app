@@ -1,3 +1,8 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 #center {
   text-align: center;
 }
@@ -5,14 +10,22 @@
 #searchbar {
   text-align: center;
 }
+p, li, h6, #back {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 120%;
+  font-weight: bold;
+}
 
-h1, h2 {
+h1, h3 {
   font-family: 'Cabin', sans-serif;
 
 }
 #submit {
   margin-bottom: 10px;
 
+}
+#albumsList li {
+  padding: 7px 0;
 }
 
 .container {

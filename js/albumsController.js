@@ -1,7 +1,7 @@
 function showAlbums(){
   $('div#albumsList').remove()
   $('div#albums').append("<div id='albumsList'>")
-  $('div#albumsList').append(`<h2>Albums:</h2>`)
+  $('div#albumsList').append(`<h3>Albums:</h3>`)
   $('div#albumsList').append('<ol id="albums">')
 
   //Extracts the offset from the url
@@ -44,16 +44,38 @@ function showAlbum(){
   var album = store().artist.albums.find(function(album){
     return album.spot_id === spot_id[spot_id.length - 1]
   })
-
+  // debugger
+  //
   $('div#album').remove()
-  $('div#albums').append("<div id='album'>")
-  $('div#album').append(`<img src='${album.imageUrl}'>`)
+  $('div#albumsList').empty()
+  $('div#albumsList').append("<div id='album'>")
+  // $('div#album').append(`<br><img src='${album.imageUrl}'>`)
+  $('div#albumsList').prepend("<a id='back' href='#' onclick='searchArtist()'>Back to All Albums</a>")
   $('div#album').append(`<h2>${album.name}</h2>`)
   $('div#album').append(`<h3>Released: ${album.releaseDate}</h3>`)
   $('div#album').append('<ol id="album-list">')
   album.songs.forEach( song =>{
     let artist_name_regex = store().artist.name.replace(/[^a-zA-Z\d:]/g, '')
     let song_name_regex = song.name.replace(/[^a-zA-Z\d\s:]/g, '')
-    $('#album-list').append(`<li id="${song_name_regex}"><h6>${song.name}</h6> <a target="_blank" href="${song.spotify_url}"><img class="icon" style="width: 5%;" src="assets/spotify_icon.png" title="Listen on Spotify"></a> <a href="javascript:" onclick="ytSearch('${artist_name_regex}', '${song_name_regex}')"><img class="icon" style="width: 5%;" src="assets/youtube_icon.png" title="See a youtube karaoke(?) video"></a> <a href="javascript:" onclick="appendPreview('${song.name.replace(/['"]/g, "")}','${song.preview_url}')"><img class="icon" style="width: 5%;" src="assets/preview_icon.png" title="Get a 30 second preview"></a> <a href="javascript:" onclick="lyricSearch('${store().artist.name}', '${song.name.replace(/[^a-zA-Z\d\s:]/g, '')}')"><img class="icon" style="width: 5%;" src="assets/lyrics_icon.png" title="Get Lyrics"></a></li>`)
+    $('#album-list').append(` 
+      <li id="${song_name_regex}">
+        <h6>${song.name}</h6>
+
+        <a target="_blank" href="${song.spotify_url}">
+          <img class="icon" style="width: 5%;" src="assets/spotify_icon.png" title="Listen on Spotify">
+        </a>
+
+        <a href="#" onclick="ytSearch('${artist_name_regex}', '${song_name_regex}')">
+          <img class="icon" style="width: 5%;" src="assets/youtube_icon.png" title="See a youtube karaoke(?) video">
+        </a>
+
+        <a href="#preview" onclick="appendPreview('${song.name.replace(/['"]/g, "")}','${song.preview_url}')">
+          <img class="icon" style="width: 5%;" src="assets/preview_icon.png" title="Get a 30 second preview">
+        </a>
+
+        <a href="#lyrics" onclick="lyricSearch('${store().artist.name}', '${song.name.replace(/[^a-zA-Z\d\s:]/g, '')}')">
+          <img class="icon" style="width: 5%;" src="assets/lyrics_icon.png" title="Get Lyrics">
+        </a>
+      </li>`)
   })
 }

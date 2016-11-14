@@ -7,14 +7,14 @@ function searchArtist(){
   $('div#youtube').html("<img src='assets/logo.png' style='width: 640px; height: 360px;'>")
   $('div#albums').empty()
   $('div#preview').empty()
-  var artist = $('#artist_name').val().replace(/[^a-zA-Z\d\s:]/g, '')
+  var artist = $('#artist_name').val().replace(/[-]/g, " ").replace(/[^a-zA-Z\d\s:]/g, '')
+  debugger
   $.ajax({
     method: "GET",
     url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
     success: function(data) {
       let artist = data.artists.items[0]
-      debugger
-      new Artist(artist.name, artist.id, artist.images[0].url, artist.images[1].url);
+      new Artist(artist.name, artist.id, artist.images[0].url);
       displayArtistInfo()
       songSearch(artist.id)
       getArtistAlbums(artist.id, "first")
