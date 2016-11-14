@@ -6,6 +6,15 @@
   text-align: center;
 }
 
+h1, h2 {
+  font-family: 'Cabin', sans-serif;
+
+}
+#submit {
+  margin-bottom: 10px;
+
+}
+
 .container {
   width: 100%;
   padding: 20px;
