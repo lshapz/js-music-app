@@ -9,7 +9,19 @@ function searchArtist(){
   $('div#albums').empty()
   $('div#preview').empty()
   if ($('#artist_name').val() === ""){
-    var artist = "Kanye West"
+    $( "#kanye" ).show( "slow", function() {
+    });
+    $( "#goAwayKanye" ).click(function() {
+      $('#kanye').fadeOut("slow")
+      displayArtistInfo()
+      topTracksSearch(artist.id)
+      getArtistAlbums(artist.id, "first")
+    });
+    $( "#searchKanye" ).click(function() {
+      searchRelatedArtist('Kanye West')
+      $('#kanye').hide()
+    });
+    var artist = $('#artist_name').val().replace(/[-]/g, " ").replace(/[^a-zA-Z\d\s:]/g, '') 
   } else {
     var artist = $('#artist_name').val().replace(/[-]/g, " ").replace(/[^a-zA-Z\d\s:]/g, '')
   }
