@@ -15,9 +15,24 @@ function searchArtist(){
     success: function(data) {
       let artist = data.artists.items[0]
       new Artist(artist.name, artist.id, artist.images[0].url);
-      displayArtistInfo()
-      topTracksSearch(artist.id)
-      getArtistAlbums(artist.id, "first")
+      if (data.artists.items[0].name === "Kanye West" || data.artists.items[0].name != "Taylor Swift"){
+        displayArtistInfo()
+        topTracksSearch(artist.id)
+        getArtistAlbums(artist.id, "first")
+      } else if (data.artists.items[0].name === "Taylor Swift"){
+        $( "#kanye" ).show( "slow", function() {
+        });
+        $( "#goAwayKanye" ).click(function() {
+          $('#kanye').fadeOut("slow")
+          displayArtistInfo()
+          topTracksSearch(artist.id)
+          getArtistAlbums(artist.id, "first")
+        });
+        $( "#searchKanye" ).click(function() {
+          searchRelatedArtist('Kanye West')
+          $('#kanye').hide()
+        });
+      }
     }
   })
 }

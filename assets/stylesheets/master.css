@@ -26,7 +26,7 @@ h1, h3 {
 
 
 #albumsList li {
-  padding: 7px 0;
+  padding: 10px 0;
 }
 
 .container {
@@ -60,5 +60,14 @@ video {
 }
 
 #albumsList li:hover {
-  
+
+}
+
+#kanye {
+  text-align: center;
+}
+
+#kanye h3{
+  display: inline;
+  margin: 5px 20px;
 }

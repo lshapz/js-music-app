@@ -32,6 +32,7 @@ function showSongs(){
 
 
 function displayArtistInfo() {
+
   var artist = store().artist
   $('div#artist').empty()
   $('div#artist').append(`<h1>${artist.name}</h1>`)
