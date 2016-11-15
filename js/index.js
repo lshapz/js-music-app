@@ -30,6 +30,7 @@ function showSongs(){
 
 }
 
+
 function displayArtistInfo() {
   var artist = store().artist
   $('div#artist').empty()
@@ -88,6 +89,8 @@ function showLyrics(){
 
 function showSearchTracks(){
   $('div#spotify').empty()
+  $('.test').css('background', "")
+  $('div#middle').empty()
   $('div#spotify').append(`<h3>You searched for ${$("#song_name").val()}:</h3>`)
   $('div#spotify').append('<ol id="top-tracks">')
   store().songs.forEach(song=>{
