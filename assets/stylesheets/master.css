@@ -77,5 +77,6 @@ video {
   box-sizing: border-box;
 	background: linear-gradient(#2373a9, #48a0da);
   color: white;
+  max-width: 350px;
 
 }
