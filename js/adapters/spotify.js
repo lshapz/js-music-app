@@ -8,7 +8,11 @@ function searchArtist(){
   $('div#youtube').html("<img src='assets/logo.png' style='width: 640px; height: 360px;'>")
   $('div#albums').empty()
   $('div#preview').empty()
-  var artist = $('#artist_name').val().replace(/[-]/g, " ").replace(/[^a-zA-Z\d\s:]/g, '')
+  if ($('#artist_name').val() === ""){
+    var artist = "Kanye West"
+  } else {
+    var artist = $('#artist_name').val().replace(/[-]/g, " ").replace(/[^a-zA-Z\d\s:]/g, '')
+  }
   $.ajax({
     method: "GET",
     url: `https://api.spotify.com/v1/search?q=${artist}&type=artist`,
