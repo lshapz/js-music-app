@@ -76,6 +76,9 @@ button {
     max-width: 350px;
 
 }
+h2 {
+  max-width: 350px;
+}
 
 #song_search:hover, #artist_search:hover, button:hover {
 
