@@ -1,0 +1,36 @@
+{
+  "name": "js-music-app",
+  "version": "1.0.0",
+  "description": "Apis Youtube & Spotify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tmarren2090/js-music-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tmarren2090/js-music-app/issues"
+  },
+  "homepage": "https://github.com/tmarren2090/js-music-app#readme",
+  "dependencies": {
+    "json": "^9.0.4",
+    "lyricist": "^0.1.1",
+    "node-genius": "^1.1.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "jshint": "^2.9.4",
+    "jshint-loader": "^0.8.3",
+    "node-libs-browser": "^1.0.0",
+    "webpack": "^1.13.3"
+  }
+}
