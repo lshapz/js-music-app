@@ -71,3 +71,11 @@ video {
   display: inline;
   margin: 5px 20px;
 }
+
+#song_search:hover, #artist_search:hover, button:hover {
+
+  box-sizing: border-box;
+	background: linear-gradient(#2373a9, #48a0da);
+  color: white;
+
+}
