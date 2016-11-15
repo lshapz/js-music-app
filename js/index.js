@@ -91,7 +91,10 @@ function showLyrics(){
 function showSearchTracks(){
   $('div#spotify').empty()
   $('.test').css('background', "")
-  $('div#middle').empty()
+  $('div#artist').empty()
+  $('div#related-artists').empty()
+  $('div#preview').empty()
+  $('div#lyrics').empty()
   $('div#spotify').append(`<h3>You searched for ${$("#song_name").val()}:</h3>`)
   $('div#spotify').append('<ol id="top-tracks">')
   store().songs.forEach(song=>{
