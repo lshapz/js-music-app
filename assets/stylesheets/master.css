@@ -72,6 +72,11 @@ video {
   margin: 5px 20px;
 }
 
+button {
+    max-width: 350px;
+
+}
+
 #song_search:hover, #artist_search:hover, button:hover {
 
   box-sizing: border-box;
