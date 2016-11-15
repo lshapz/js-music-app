@@ -18,7 +18,7 @@ function showAlbums(){
   //Create list items for each album
   artistsAlbums.forEach(album=>{
     album_name_regex = album.name.replace(/[^a-zA-Z\d:]/g, '')
-    $('#albumsList').append(`<li id="${album_name_regex}"><a href="javascript:" onclick="getAlbum('${album.spot_id}')">${album.name}</a></li>`)
+    $('#albumsList').append(`<li id="${album_name_regex}"><a href="javascript:" onclick="getAlbum('${album.spot_id}')"><button type="button">${album.name}</button></a></li>`)
 
     $(`#${album_name_regex}`).hover(
       function(){
@@ -50,14 +50,14 @@ function showAlbum(){
   $('div#albumsList').empty()
   $('div#albumsList').append("<div id='album'>")
   // $('div#album').append(`<br><img src='${album.imageUrl}'>`)
-  $('div#albumsList').prepend("<a id='back' href='#' onclick='searchArtist()'>Back to All Albums</a>")
+  $('div#albumsList').prepend("<a id='back' href='#' onclick='searchArtist()'><button type='button'>< Back to All Albums</button></a>")
   $('div#album').append(`<h2>${album.name}</h2>`)
   $('div#album').append(`<h3>Released: ${album.releaseDate}</h3>`)
   $('div#album').append('<ol id="album-list">')
   album.songs.forEach( song =>{
     let artist_name_regex = store().artist.name.replace(/[^a-zA-Z\d:]/g, '')
     let song_name_regex = song.name.replace(/[^a-zA-Z\d\s:]/g, '')
-    $('#album-list').append(` 
+    $('#album-list').append(`
       <li id="${song_name_regex}">
         <h6>${song.name}</h6>
 

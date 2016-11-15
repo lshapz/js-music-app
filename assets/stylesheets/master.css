@@ -59,6 +59,14 @@ video {
   z-index: -1;
 }
 
-#albumsList li:hover {
-  
+#albumsList li > button:hover {
+
+}
+
+#song_search:hover, #artist_search:hover, button:hover {
+
+  box-sizing: border-box;
+	background: linear-gradient(#2373a9, #48a0da);
+  color: white;
+
 }
