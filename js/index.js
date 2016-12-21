@@ -70,12 +70,14 @@ function showLyrics(){
 
   var snippet = store().lyrics.snippet
   var url = store().lyrics.lyrics_url
-  var title = store().lyrics.title.split(' ').join('')
+  var title = store().lyrics.title.split(' ').join('').replace(/_/g, " ")
   // debugger
   // if ($(`div#lyrics`).length === 0) {
 
+  snippet = snippet.replace(/\n/g, '<br />')
+// debugger
   if (!$(`div#lyrics`).html().includes(url)) {
-    $(`div#lyrics`).html(`<br><p><a target="_blank" href="${url}">${snippet}</a></p>`)
+    $(`div#lyrics`).html(`<br><p><a target="_blank" href="${url}">lyrics to ${title}</a><p></p>${snippet}</p>`)
   }
   else {
     $('div#lyrics').empty()
